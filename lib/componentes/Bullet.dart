@@ -1,10 +1,10 @@
 import 'package:flame/components/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:game_base/componentes/Explosion.dart';
 import 'package:game_base/main.dart';
 
 import 'Dragon.dart';
-import 'Explosion.dart';
 import 'Smyle.dart';
 
 const ComponentSize = 30.0;
@@ -27,15 +27,12 @@ class Bullet extends SpriteComponent {
     this.y -= t * SPEED;
 
     if (dragonList.isNotEmpty) {
-      List<Dragon> removeDragonList = <Dragon>[];
-
       dragonList.forEach((dragon) {
         if (!dragon.remove) {
           bool remove = this.toRect().contains(dragon.toRect().bottomCenter) ||
               this.toRect().contains(dragon.toRect().bottomLeft) ||
               this.toRect().contains(dragon.toRect().bottomRight);
           if (remove) {
-            removeDragonList.add(dragon);
             dragon.remove = true;
             points += 1;
             this.explode = true;
@@ -43,8 +40,6 @@ class Bullet extends SpriteComponent {
           }
         }
       });
-
-      dragonList.removeWhere((element) => false);
     }
   }
 

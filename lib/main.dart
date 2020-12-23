@@ -29,6 +29,7 @@ void main() async {
     'bullet.png',
     'explosion-1.png'
   ]);
+
   Flame.audio.load('explosion.mp3');
   var dimensions = await Flame.util.initialDimensions();
 
@@ -78,7 +79,6 @@ class JogoBase extends BaseGame with TapDetector {
     if (creationTimer >= 0.5) {
       creationTimer = 0.0;
       int escolha = random.nextInt(2);
-      print(escolha);
       if (escolha > 0) {
         smyle = new Smyle(dimensions);
         smyleList.add(smyle);
